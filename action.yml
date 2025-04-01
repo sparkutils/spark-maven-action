@@ -22,7 +22,7 @@ inputs:
   additionalShellCommand:
     required: false
     default: ""
-    description: run extra commands on the shell, must be a .sh file location without the extension
+    description: run extra commands on the shell, must be a .sh file location in current directory without the extension
 
 runs:
   using: "composite"
@@ -47,6 +47,10 @@ runs:
     - name: ${{ inputs.title }}
       run: ${{ inputs.script }}
       shell: bash
+    - name: additionalShell
+      if: ${{ !startsWith(inputs.additionalShellCommand, ".sh ") && inputs.additionalShellCommand != "" }}
+      run: ./${{ inputs.additionalShellCommand }}
+      shell: bash
     - name: target
       uses: actions/upload-artifact@v4
       continue-on-error: true
@@ -54,7 +58,3 @@ runs:
       with:
         name: build_target
         path: ${{ inputs.storeTarget }}
-    - name: additionalShell
-      if: ${{ !startsWith(inputs.additionalShellCommand, ".sh ") && inputs.additionalShellCommand != "" }}
-      run: ${{ inputs.additionalShellCommand }}
-      shell: bash
