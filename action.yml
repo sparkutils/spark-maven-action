@@ -48,13 +48,13 @@ runs:
       run: ${{ inputs.script }}
       shell: bash
     - name: additionalShell
-      if: ${{ !startsWith(inputs.additionalShellCommand, ".sh ") && inputs.additionalShellCommand != "" }}
+      if: ${{ !startsWith(inputs.additionalShellCommand, '.sh ') && inputs.additionalShellCommand != '' }}
       run: ./${{ inputs.additionalShellCommand }}
       shell: bash
     - name: target
       uses: actions/upload-artifact@v4
       continue-on-error: true
-      if: ${{ inputs.storeTarget != "" }}
+      if: ${{ inputs.storeTarget != '' }}
       with:
         name: build_target
         path: ${{ inputs.storeTarget }}
