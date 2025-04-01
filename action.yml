@@ -19,6 +19,10 @@ inputs:
     required: false
     default: ""
     description: path of the maven target on the matrix build be upload-artifact?
+  additionalShellCommand:
+    required: false
+    default: ""
+    description: run extra commands on the shell, must be a .sh file location without the extension
 
 runs:
   using: "composite"
@@ -50,3 +54,7 @@ runs:
       with:
         name: build_target
         path: ${{ inputs.storeTarget }}
+    - name: additionalShell
+      if: ${{ !startsWith(inputs.additionalShellCommand, ".sh ") && inputs.additionalShellCommand != "" }}
+      run: ${{ inputs.additionalShellCommand }}
+      shell: bash
