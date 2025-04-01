@@ -45,7 +45,7 @@ runs:
         spark-version: ${{ inputs.sparkVersion }}
         hadoop-version: ${{ inputs.hadoopVersion }}
         scala-version: ${{ inputs.sparkScalaVersion }}
-        spark-url: 'https://www.apache.org/dyn/closer.lua/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz'
+        spark-url: 'https://dlcdn.apache.org/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz'
     - name: Set up JDK ${{ inputs.jdk }}
       uses: actions/setup-java@v4.2.1
       with:
