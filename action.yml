@@ -23,6 +23,18 @@ inputs:
     required: false
     default: ""
     description: run extra commands on the shell, must be a .sh file location in current directory without the extension
+  sparkVersion:
+    required: false
+    default: '3.2.1'
+    description: Spark version to use
+  scalaSparkVersion:
+    required: false
+    default: '2.13'
+    description: Spark scala version to use
+  hadoopVersion:
+    required: false
+    default: '3.2'
+    description: Hadoop version to use
 
 runs:
   using: "composite"
@@ -30,9 +42,9 @@ runs:
     - uses: actions/checkout@v4.1.2
     - uses: vemonet/setup-spark@v1.2.1 # only needed for hadoop version if / when tests are added 2.4 -> 3.5 builds work
       with:
-        spark-version: '3.2.1'
-        hadoop-version: '3.2'
-        scala-version: '2.13'
+        spark-version: ${{ inputs.sparkVersion }}
+        hadoop-version: ${{ inputs.hadoopVersion }}
+        scala-version: ${{ inputs.sparkScalaVersion }}
     - name: Set up JDK ${{ inputs.jdk }}
       uses: actions/setup-java@v4.2.1
       with:
