@@ -42,9 +42,9 @@ runs:
     - uses: actions/checkout@v4.1.2
     - uses: vemonet/setup-spark@v1.2.1 # only needed for hadoop version if / when tests are added 2.4 -> 3.5 builds work
       with:
-        spark-version: ${{ inputs.sparkVersion }}
-        hadoop-version: ${{ inputs.hadoopVersion }}
-        scala-version: ${{ inputs.sparkScalaVersion }}
+        spark-version: '${{ inputs.sparkVersion }}'
+        hadoop-version: '${{ inputs.hadoopVersion }}'
+        scala-version: '${{ inputs.sparkScalaVersion }}'
     - name: Set up JDK ${{ inputs.jdk }}
       uses: actions/setup-java@v4.2.1
       with:
