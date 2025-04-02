@@ -19,6 +19,10 @@ inputs:
     required: false
     default: ""
     description: path of the maven target on the matrix build be upload-artifact?
+  storeTargetNane:
+    required: false
+    default: "target"
+    description: the name of the maven target on the matrix build be upload-artifact?
   additionalShellCommand:
     required: false
     default: ""
@@ -61,7 +65,7 @@ runs:
       if: ${{ !startsWith(inputs.additionalShellCommand, '.sh ') && inputs.additionalShellCommand != '' }}
       run: ./${{ inputs.additionalShellCommand }}
       shell: bash
-    - name: target
+    - name: ${{ inputs.storeTargetNane }}
       uses: actions/upload-artifact@v4
       continue-on-error: true
       if: ${{ inputs.storeTarget != '' }}
