@@ -31,8 +31,9 @@ inputs:
     required: false
     default: '3.5.5'
     description: Spark version to use
-  scalaSparkVersion:
+  sparkScalaVersion:
     required: false
+    default: '2.13'
     description: Spark scala version to use
   hadoopVersion:
     required: false
