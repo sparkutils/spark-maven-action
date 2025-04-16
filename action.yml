@@ -29,7 +29,7 @@ inputs:
     description: run extra commands on the shell, must be a .sh file location in current directory without the extension
   sparkVersion:
     required: false
-    default: '3.5.5'
+    default: '3.2.1'
     description: Spark version to use
   sparkScalaVersion:
     required: false
@@ -37,7 +37,7 @@ inputs:
     description: Spark scala version to use
   hadoopVersion:
     required: false
-    default: '3'
+    default: '3.2'
     description: Hadoop version to use
 
 runs:
