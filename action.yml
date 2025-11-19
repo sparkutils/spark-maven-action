@@ -48,6 +48,8 @@ runs:
         echo spark-version: ${{ inputs.sparkVersion }}
         echo hadoop-version: ${{ inputs.hadoopVersion }}
         echo scala-version: ${{ inputs.sparkScalaVersion }}
+        echo temp coverage is
+        ls tmpSCoverage/
       shell: bash
     - uses: actions/checkout@v4.1.2
     - uses: vemonet/setup-spark@v1.2.1 # only needed for hadoop version if / when tests are added 2.4 -> 3.5 builds work
