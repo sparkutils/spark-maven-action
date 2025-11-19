@@ -39,6 +39,10 @@ inputs:
     required: false
     default: '3.2'
     description: Hadoop version to use
+  noCheckout:
+    required: false
+    default: "true"
+    description: Set to true in order to disable the checkout operation as you have used it, and perhaps downloads, before calling.
 
 runs:
   using: "composite"
@@ -48,10 +52,9 @@ runs:
         echo spark-version: ${{ inputs.sparkVersion }}
         echo hadoop-version: ${{ inputs.hadoopVersion }}
         echo scala-version: ${{ inputs.sparkScalaVersion }}
-        echo temp coverage is
-        ls tmpSCoverage/
       shell: bash
     - uses: actions/checkout@v4.1.2
+      if: ${{ inputs.noCheckout != 'true' }}
     - uses: vemonet/setup-spark@v1.2.1 # only needed for hadoop version if / when tests are added 2.4 -> 3.5 builds work
       with:
         spark-version: ${{ inputs.sparkVersion || '3.2.1' }}
