@@ -41,7 +41,7 @@ inputs:
     description: Hadoop version to use
   noCheckout:
     required: false
-    default: "true"
+    default: "false"
     description: Set to true in order to disable the checkout operation as you have used it, and perhaps downloads, before calling.
 
 runs:
