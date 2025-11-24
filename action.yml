@@ -55,6 +55,15 @@ runs:
       shell: bash
     - uses: actions/checkout@v4.1.2
       if: ${{ inputs.noCheckout != 'true' }}
+    - name: spark binary cache
+      id: load-cache-spark
+      uses: actions/cache@v4
+      env:
+        cache-name: load-cache-spark
+      with:
+        # setup-spark uses tools cache and sparkversion we should add scala (despite it not existing on 4)
+        path: $GITHUB_WORKSPACE/spark-${{ inputs.sparkVersion || '3.2.1' }}-bin-hadoop${{ inputs.hadoopVersion || '3.2' }}${{ inputs.sparkScalaVersion || '2.13' }}
+        key: spark_version_${{ inputs.sparkVersion || '3.2.1' }}_${{ inputs.hadoopVersion || '3.2' }}_${{ inputs.sparkScalaVersion || '2.13' }}
     - uses: vemonet/setup-spark@v1.2.1 # only needed for hadoop version if / when tests are added 2.4 -> 3.5 builds work
       with:
         spark-version: ${{ inputs.sparkVersion || '3.2.1' }}
